@@ -1,4 +1,4 @@
-# XSERVER 1.1
+# MINISERVER 1.1
 
 <h3>This project is a demonstration of using Minestom for Minecraft severs. </h2>
 
@@ -14,6 +14,6 @@ When you access the server, it's a flat world.
 
 ### WARNING
 
-XServer is a very unstable project of mine.
+MiniServer is a very unstable project of mine.
 Beware of bugs.
 also not built on x11
