@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'carlisle.XServer'
-version = '1.0-SNAPSHOT'
+version = '1.1'
 
 repositories {
     mavenCentral()
@@ -13,33 +13,32 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    implementation 'net.minestom:minestom-snapshots:65f75bb059'
+    implementation 'net.minestom:minestom-server:1.21.11'
     implementation 'org.slf4j:slf4j-api:2.1.0-alpha1'
-    implementation 'org.slf4j:slf4j-simple:2.0.0' // or the latest version
-
+    implementation 'org.slf4j:slf4j-simple:2.0.0'
 }
 
 test {
     useJUnitPlatform()
 }
 
-tasks {
-    jar {
-        manifest {
-            attributes["Main-Class"] = "carlisle.XServer.Main" // Change this to your main class
-        }
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'carlisle.MiniServer.Main' // <-- adjust if different
+        )
     }
-
-    build {
-        dependsOn(shadowJar)
-    }
-    shadowJar {
-        mergeServiceFiles()
-        archiveClassifier.set("") // Prevent the -all suffix on the shadowjar file.
-    }
-
-
 }
+
+shadowJar {
+    mergeServiceFiles()
+    archiveClassifier.set("") // no -all suffix
+}
+
+build {
+    dependsOn(shadowJar)
+}
+
 sourceSets {
     main {
         resources {
